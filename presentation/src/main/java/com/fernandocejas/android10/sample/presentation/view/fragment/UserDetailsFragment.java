@@ -7,6 +7,7 @@ package com.fernandocejas.android10.sample.presentation.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ import butterknife.OnClick;
  */
 public class UserDetailsFragment extends BaseFragment implements UserDetailsView {
     private static final String PARAM_USER_ID = "param_user_id";
+    private static final String TAG = UserDetailsFragment.class.getSimpleName();
 
     @Inject
     UserDetailsPresenter userDetailsPresenter;
@@ -69,6 +71,7 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG,"----onCreate()");
         this.getComponent(UserComponent.class).inject(this);
     }
 
@@ -98,18 +101,21 @@ public class UserDetailsFragment extends BaseFragment implements UserDetailsView
     @Override
     public void onPause() {
         super.onPause();
+        Log.d(TAG,"----onPause()");
         this.userDetailsPresenter.pause();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Log.d(TAG,"----onDestroyView()");
         ButterKnife.unbind(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d(TAG,"----onDestroy()");
         this.userDetailsPresenter.destroy();
     }
 
