@@ -25,6 +25,8 @@ import io.reactivex.Observable;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+
 /**
  * This class is an implementation of {@link UseCase} that represents a use case for
  * retrieving data related to an specific {@link User}.

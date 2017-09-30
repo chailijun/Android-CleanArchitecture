@@ -15,8 +15,12 @@
  */
 package com.fernandocejas.android10.sample.data.net;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 
+import android.util.Log;
+
+import com.fernandocejas.android10.sample.data.utils.AppUtil;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 
@@ -26,6 +30,9 @@ import java.net.URL;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
+import static android.provider.ContactsContract.Directory.PACKAGE_NAME;
+
+
 /**
  * Api Connection class used to retrieve data from the cloud.
  * Implements {@link java.util.concurrent.Callable} so when executed asynchronously can
@@ -33,18 +40,25 @@ import java.util.concurrent.TimeUnit;
  */
 class ApiConnection implements Callable<String> {
 
+    public static final String TAG = ApiConnection.class.getSimpleName();
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
     private static final String CONTENT_TYPE_VALUE_JSON = "application/json; charset=utf-8";
+    private static final String PLATFORM = "platform";
+    private static final String PLATFORM_ANDROID = "android";
+    private static final String VERSION_NAME = "versionName";
+    private static final String PACKAGE_NAME = "packageName";
 
+    private Context context;
     private URL url;
     private String response;
 
-    private ApiConnection(String url) throws MalformedURLException {
+    private ApiConnection(Context context,String url) throws MalformedURLException {
+        this.context = context.getApplicationContext();
         this.url = new URL(url);
     }
 
-    static ApiConnection createGET(String url) throws MalformedURLException {
-        return new ApiConnection(url);
+    static ApiConnection createGET(Context context,String url) throws MalformedURLException {
+        return new ApiConnection(context,url);
     }
 
     /**
@@ -59,11 +73,24 @@ class ApiConnection implements Callable<String> {
         return response;
     }
 
+
+
     private void connectToApi() {
+        int localVersion = AppUtil.getLocalVersion(this.context);
+        String localVersionName = AppUtil.getLocalVersionName(this.context);
+        String localPackageName = AppUtil.getLocalPackageName(this.context);
+
+        Log.d(TAG,"---VersionCode---"+localVersion);
+        Log.d(TAG,"---VersionName---"+localVersionName);
+        Log.d(TAG,"---PackageName---"+localPackageName);
+
         OkHttpClient okHttpClient = this.createClient();
         final Request request = new Request.Builder()
                 .url(this.url)
                 .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_VALUE_JSON)
+                .addHeader(PLATFORM, PLATFORM_ANDROID)
+                .addHeader(VERSION_NAME, localVersionName)
+                .addHeader(PACKAGE_NAME, localPackageName)
                 .get()
                 .build();
 

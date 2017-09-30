@@ -93,14 +93,14 @@ public class RestApiImpl implements RestApi {
         });
     }
 
-    private String getUserEntitiesFromApi() throws MalformedURLException {
-        return ApiConnection.createGET(API_URL_GET_USER_LIST).requestSyncCall();
-    }
+  private String getUserEntitiesFromApi() throws MalformedURLException {
+    return ApiConnection.createGET(context,API_URL_GET_USER_LIST).requestSyncCall();
+  }
 
-    private String getUserDetailsFromApi(int userId) throws MalformedURLException {
-        String apiUrl = API_URL_GET_USER_DETAILS + userId + ".json";
-        return ApiConnection.createGET(apiUrl).requestSyncCall();
-    }
+  private String getUserDetailsFromApi(int userId) throws MalformedURLException {
+    String apiUrl = API_URL_GET_USER_DETAILS + userId + ".json";
+    return ApiConnection.createGET(context,apiUrl).requestSyncCall();
+  }
 
     /**
      * Checks if the device has any active internet connection.

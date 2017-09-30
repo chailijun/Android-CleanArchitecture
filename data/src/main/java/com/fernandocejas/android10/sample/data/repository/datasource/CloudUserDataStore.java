@@ -19,9 +19,9 @@ import com.fernandocejas.android10.sample.data.cache.UserCache;
 import com.fernandocejas.android10.sample.data.entity.UserEntity;
 import com.fernandocejas.android10.sample.data.net.RestApi;
 
-import io.reactivex.Observable;
-
 import java.util.List;
+
+import io.reactivex.Observable;
 
 /**
  * {@link UserDataStore} implementation based on connections to the api (Cloud).

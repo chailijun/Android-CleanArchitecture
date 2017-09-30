@@ -31,6 +31,10 @@ import java.util.Collection;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Fragment that shows a list of Users.
  */

@@ -24,6 +24,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Adaptar that manages a collection of {@link UserModel}.
  */

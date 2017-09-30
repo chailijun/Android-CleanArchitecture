@@ -21,12 +21,12 @@ import com.fernandocejas.android10.sample.data.repository.datasource.UserDataSto
 import com.fernandocejas.android10.sample.domain.User;
 import com.fernandocejas.android10.sample.domain.repository.UserRepository;
 
-import io.reactivex.Observable;
-
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import io.reactivex.Observable;
 
 /**
  * {@link UserRepository} for retrieving user data.
