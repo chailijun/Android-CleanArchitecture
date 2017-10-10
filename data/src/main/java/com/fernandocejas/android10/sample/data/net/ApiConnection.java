@@ -17,7 +17,6 @@ package com.fernandocejas.android10.sample.data.net;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-
 import android.util.Log;
 
 import com.fernandocejas.android10.sample.data.utils.AppUtil;
@@ -29,8 +28,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
-
-import static android.provider.ContactsContract.Directory.PACKAGE_NAME;
 
 
 /**

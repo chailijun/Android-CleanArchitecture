@@ -48,15 +48,25 @@ android {
       keyAlias 'androiddebugkey'
       keyPassword 'android'
     }
+
+      release {
+          storeFile file('../buildsystem/goodfather.keystore')
+          storePassword '1q2w3e4r'
+          keyAlias 'goodfather'
+          keyPassword '1q2w3e4r'
+      }
   }
 
   buildTypes {
     debug {
       signingConfig signingConfigs.debug
     }
+      release {
+          signingConfig signingConfigs.debug
+      }
   }
 
-  buildToolsVersion '25.0.0'
+//  buildToolsVersion '25.0.0'
 }
 
 dependencies {
